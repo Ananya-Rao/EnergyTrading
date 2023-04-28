@@ -27,7 +27,8 @@ class _LandInspectorState extends State<LandInspector> {
   bool isFirstTimeLoad = true;
   dynamic userCount = -1, landCount = -1;
   bool isLoading = false;
-    List<List<dynamic>> receivedRequestInfo = [];
+   
+ List<List<dynamic>> receivedRequestInfo = [], temp1 = [];
 
   List<Menu> menuItems = [
     Menu(title: 'Dashboard', icon: Icons.dashboard),
@@ -288,6 +289,7 @@ Map<String, String> requestStatus = {
 
 getMyReceivedRequest() async {
     receivedRequestInfo = [];
+    temp1 = [];
     setState(() {
       isLoading = true;
     });
@@ -307,13 +309,17 @@ getMyReceivedRequest() async {
       } else {
         temp = await model.requestInfo(requestList[i]);
       }
-      receivedRequestInfo.add(temp);
+      temp1.add(temp);
       isLoading = false;
-      setState(() {});
+      setState(() {
+        
+      });
     }
     isLoading = false;
     //  screen = 4;
-    setState(() {});
+    setState(() {
+      receivedRequestInfo = temp1;
+    });
   }
 
  Widget receivedRequest() {
@@ -338,14 +344,14 @@ getMyReceivedRequest() async {
                   ),
                   Expanded(
                     child: Text(
-                      'Land Id',
+                      'Id',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     flex: 1,
                   ),
                   Expanded(
                       child: Center(
-                        child: Text('Buyer Address',
+                        child: Text('CSO Address',
                             style: TextStyle(fontWeight: FontWeight.bold)),
                       ),
                       flex: 5),
@@ -425,13 +431,14 @@ getMyReceivedRequest() async {
                                   } else {
                                     await model.rejectRequest(data[0]);
                                   }
-                                  await getMyReceivedRequest();
+                                  
                                 } catch (e) {
                                   print(e);
                                 }
 
-                                //await Future.delayed(Duration(seconds: 2));
+                                //await Future.delayed(Duration(seconds: 10));
                                 SmartDialog.dismiss();
+                                await getMyReceivedRequest();
                               },
                         child: const Text('Reject')),
                   ),
@@ -456,8 +463,9 @@ getMyReceivedRequest() async {
                                   print(e);
                                 }
 
-                                //await Future.delayed(Duration(seconds: 2));
+                                //await Future.delayed(Duration(seconds: 10));
                                 SmartDialog.dismiss();
+                                await getMyReceivedRequest();
                               },
                         child: const Text('Accept')),
                   ),

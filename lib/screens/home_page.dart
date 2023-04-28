@@ -33,24 +33,23 @@ class _home_pageState extends State<home_page> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 150.0, top: 100, right: 150),
+              padding: const EdgeInsets.only(left: 150.0, top: 15, right: 150),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   const LeftDescription(),
-                  // Center(
-                  //   child: Container(
-                  //     width: 600,
-                  //     height: 804,
-                  //     child: SvgPicture.asset(
-                  //       'assets/homeimg.webp',
-                  //       height: 20.0,
-                  //       width: 20.0,
-                  //       allowDrawingOutsideViewBox: true,
-                  //     ),
-                  //   ),
-                  // )
+                  Center(
+                    child: Container(
+                      width: 600,
+                      height: 804,
+                      child: Image.asset(
+                        'assets/img.jpg',
+                        height: 20.0,
+                        width: 20.0,
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),

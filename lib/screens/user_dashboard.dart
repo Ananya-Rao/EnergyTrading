@@ -365,18 +365,18 @@ class _UserDashBoardState extends State<UserDashBoard> {
             userProfile()
           else if (screen == 1)
             addLand()
-          else if (screen == 2)
-            myLands()
+          // else if (screen == 2)
+          //   myLands()
           // else if (screen == 3)
           //   landGallery()
-          else if (screen == 3)
-            Expanded(
-              child: Container(
-                padding: const EdgeInsets.all(25),
-                child: receivedRequest(),
-              ),
-            )
-          else if (screen == 4)
+          // else if (screen == 3)
+          //   Expanded(
+          //     child: Container(
+          //       padding: const EdgeInsets.all(25),
+          //       child: receivedRequest(),
+          //     ),
+          //   )
+          else if (screen == 2)
             Expanded(
               child: Container(
                 padding: const EdgeInsets.all(25),
@@ -409,14 +409,14 @@ class _UserDashBoardState extends State<UserDashBoard> {
                   ),
                   Expanded(
                     child: Text(
-                      'Land Id',
+                      'Id',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     flex: 1,
                   ),
                   Expanded(
                       child: Center(
-                        child: Text('Owner Address',
+                        child: Text('My Address',
                             style: TextStyle(fontWeight: FontWeight.bold)),
                       ),
                       flex: 5),
@@ -924,12 +924,16 @@ class _UserDashBoardState extends State<UserDashBoard> {
               //     ],
               //   ),
               // ),
-              Center(
-                child: Text(
-                  "Price: ₹25 per KW. Total Price:"+ (int.parse(energy)*25).toString() + " per KW",
-                  style: TextStyle(color: Colors.blue, height: 15),
+              Padding(
+                padding: EdgeInsets.all(20),
+                child: Center(
+                  child: Text(
+                    "Price: ₹25 per KW.\nTotal Price:"+ (int.parse(energy)*25).toString() + " per KW",
+                    style: TextStyle(color: Colors.red, fontSize: 50),
+                  ),
                 ),
               ),
+              
               // Center(
               //   child: Text(
               //     "Price: ₹25"+ (int.parse(energy)*25).toString() + "per KW",
@@ -974,6 +978,7 @@ class _UserDashBoardState extends State<UserDashBoard> {
                                     backgroundColor: Colors.green);
                                 isFilePicked = false;
                               }
+                              await getMySentRequest();
                             } catch (e) {
                               print(e);
                               showToast("Something Went Wrong",
